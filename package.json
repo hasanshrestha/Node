@@ -1,0 +1,41 @@
+{
+  "name": "my",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "build:watch": "tsc --watch",
+    "start:watch": "nodemon dist/server.js",
+    "start:dev": "nodemon --exec ts-node --type-check src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "npx sequelize db:migrate",
+    "migration:create": "npx sequelize-cli migration:create --name ",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo --name ",
+    "migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
+    "seed": "npx sequelize db:seed:all",
+    "seed:create": "npx sequelize-cli seed:generate --name ",
+    "seed:undo": "npx sequelize-cli db:seed:undo"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "@types/sequelize": "^4.28.20",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joi": "^17.13.3",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "ts-node": "^10.9.2"
+  }
+}
