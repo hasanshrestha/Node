@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
 
-import {AWSTranscriptionInformationInterface, TranscriptInterface} from "@src/interfaces";
-import { TranscriptionInformationService } from "@src/services";
-import { JobStatusEnumEnum, SentimentEnum } from "@src/enums";
-import { PdfGenerator } from "@src/helpers";
-import { AwsS3, AwsTranscribe } from "@src/utils";
-import { RedisProducer } from "@src/producers";
+//import {AWSTranscriptionInformationInterface, TranscriptInterface} from "@src/interfaces";
+//import { TranscriptionInformationService } from "@src/services";
+//import { JobStatusEnumEnum, SentimentEnum } from "@src/enums";
 
-export class TranscriptionController {
+
+export class UserController {
     static async createUser(req: Request, res: Response): Promise<Response> {
         const key: string = `lambda/${req.body.jobKeyName}.json`,
             object = await AwsS3.getObject(key),
@@ -20,21 +18,14 @@ export class TranscriptionController {
                 id: transcribedDataExists.id,
                 input: {
                     targetLanguageCode: transcription.LanguageCode,
-                    sentiment: sentiment as SentimentEnum,
-                    jobStatus: JobStatusEnumEnum.COMPLETED,
-                    transcribedText: transcribedText,
-                    callSummary: callSummary,
-                    callSummaryWithSpeaker: callSummaryWithSpeaker,
-                    reasonForCall: reasonForCall,
-                    alternative: alternative,
-                    conclusion: conclusion
+                    sentiment: sentiment as SentimentEnum
                 }
             });
 
         return res.status(200).json({
             success: true,
             code: 200,
-            message: "Transcribed data updated successfully."
+            message: "User created successfully."
         });
     }
 

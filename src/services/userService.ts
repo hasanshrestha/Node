@@ -25,29 +25,13 @@ export class UserService {
   }
 
   findOne({
-    email,
-    phoneNumber,
-    sub,
-    workspaceId,
+    email
   }: {
     email?: string;
-    phoneNumber?: string;
-    sub?: string;
-    workspaceId?: number | undefined;
   }): Promise<UserInterface> {
     let where: WhereOptions<any> = {};
-    let workspacesWhere: WhereOptions<any> = {};
-    if (sub) {
-      where = { ...where, sub: sub };
-    }
     if (email) {
       where = { ...where, email: email };
-    }
-    if (phoneNumber) {
-      where = { ...where, phoneNumber: phoneNumber };
-    }
-    if (workspaceId) {
-      workspacesWhere = { ...workspacesWhere, workspaceId: workspaceId };
     }
     return this.repository.findOne({
       where,
